@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href='{% static "styles/style.css" %}' />
+    <style>
+      ul{
+      padding: 0.5rem 4rem;
+      font-size: clamp(1.5rem,3vw,2rem);
+      color: var(--blue);
+      }
+      li{
+        padding: 0.5rem;
+  
+      }
+      li > input{
+        width: 10rem;
+        height: 3rem;
+        background: var(--lightblue);
+        padding: 0.5rem;
+        border: none;
+        text-align: center;
+        color: var(--black);
+        margin-left: 1rem;
+      }
+      input:hover{
+        background: var(--black);
+        color: var(--lightblue);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header part -->
+    <header>
+      <p id="header-text">Datta Meghe College Of Engineering</p>
+    </header>
+    <!-- Body part -->
+    <main>
+      <section class="main">
+        <!-- sidebar -->
+        <div class="sidebar">
+          <div class="welcome-text">
+            <span>Hello, {{teacher.user.first_name}}</span>
+          </div>
+          <!-- button-container -->
+          <div class="btn-container">
+            <div class="home btn">
+              <a href="{% url 'teacherhome' %}"
+                ><span
+                  class="iconify icons"
+                  data-inline="false"
+                  data-icon="carbon:home"
+                ></span
+              ></a>
+            </div>
+            <div class="info btn">
+                <a href="{% url 'teacherinfo' %}"
+                ><span
+                  class="iconify icons"
+                  data-inline="false"
+                  data-icon="mi:circle-information"
+                ></span
+              ></a>
+            </div>
+            <div class="logout btn"><a href="{% url 'logout' %}" ><span class="iconify icons" data-inline="false" data-icon="ic:outline-logout" ></span></div></a>
+          </div>
+        </div>
+        <!-- main conatainer -->
+        <div class="main-container">
+          <h2>List of students:</h2>
+            <ul>
+                {%  for student in students%}
+                <form action='studentdetails/{{student.stud_id}}'>
+                  <li><span>{{ student.name }} </span>
+                  <input type="submit" value="view details"></li>
+                </form>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </main>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  </body>
+</html>

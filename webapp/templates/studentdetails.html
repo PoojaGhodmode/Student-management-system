@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href='{% static "styles/style.css" %}' />
+    <style>
+      ul{
+      padding: 0.5rem 4rem;
+      font-size: clamp(1.5rem,3vw,2rem);
+      color: var(--blue);
+      }
+
+      #lectures {
+        padding-left: 4rem;
+        margin-top: 1rem;
+        font-size:clamp(1.2rem,3vw,1.5rem); 
+        font-weight:lighter;
+        border-collapse: collapse;
+        width: 70%;
+      }
+      
+      #lectures td, #lectures th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      #lectures tr {background:white;}
+      
+      #lectures tr:hover {background-color: #ddd;}
+      
+      #lectures th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: var(--blue);
+        color: white;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <!-- header part -->
+    <header>
+      <p id="header-text">Datta Meghe College Of Engineering</p>
+    </header>
+    <!-- Body part -->
+    <main>
+      <section class="main">
+        <!-- sidebar -->
+        <div class="sidebar">
+          <div class="welcome-text">
+            <span>Hello, {{teacher.user.first_name}}</span>
+          </div>
+          <!-- button-container -->
+          <div class="btn-container">
+            <div class="home btn">
+              <a href="{% url 'teacherhome' %}"
+                ><span
+                  class="iconify icons"
+                  data-inline="false"
+                  data-icon="carbon:home"
+                ></span
+              ></a>
+            </div>
+            <div class="info btn">
+                <a href="{% url 'teacherinfo' %}"
+                ><span
+                  class="iconify icons"
+                  data-inline="false"
+                  data-icon="mi:circle-information"
+                ></span
+              ></a>
+            </div>
+            <div class="logout btn"><a href="{% url 'logout' %}" ><span class="iconify icons" data-inline="false" data-icon="ic:outline-logout" ></span></div></a>
+          </div>
+        </div>
+        <!-- main conatainer -->
+        <div class="main-container">
+          <div class="student-info">
+                <h3>Student Details</h3>
+                <div class="info">
+                <p>
+                  Name:
+                  <span
+                    >{{student.name}}</span
+                  >
+                </p>
+              </div>
+              <div class="info">
+                <p>Email-ID: <span>{{student.user.email}}</span></p>
+              </div>
+              <div class="info">
+                <p>Phone No.: <span>{{student.phone_number}}</span></p>
+              </div>
+      </div>
+            <div class="location">
+                <h3>Last Scanned Location</h3>
+                <ul>
+                  {% for k, record in records.items %}
+                  <li><span>{{ record }} </span></li>
+                  {% endfor %}
+              </ul>
+            </div>
+            <div class="attendance">
+              <table id=lectures>
+                  <tr>
+                      <th>Subject</th>
+                      <th>Lectures Alloted</th>
+                      <th>Lectures Taken</th>
+                      <th>Lectures Attended</th>
+                  </tr>
+                  {% for key,value_list in lectures.items %}
+                  <tr>
+                      <td>{{ key }}</td>
+                      {% for value in value_list%}
+                      <td>{{ value }}</td> 
+                      {% endfor %}
+                  </tr>
+                  {% endfor %}
+              </table>
+          </div>
+            
+      </div>
+      </section>
+    </main>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  </body>
+</html>

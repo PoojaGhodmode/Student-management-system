@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href='{% static "styles/style.css" %}' />
+  </head>
+  <body>
+    <!-- header part -->
+    <header>
+      <p id="header-text">Datta Meghe College Of Engineering</p>
+    </header>
+    <!-- Body part -->
+    <main>
+      <section class="main">
+        <!-- sidebar -->
+        <div class="sidebar">
+          <div class="welcome-text">
+            <span>Hello, {{student.user.first_name}}</span>
+          </div>
+          <!-- button-container -->
+          <div class="btn-container">
+            <div class="home btn">
+              <a href="{% url 'studenthome' %}"
+                ><span
+                  class="iconify icons"
+                  data-inline="false"
+                  data-icon="carbon:home"
+                ></span
+              ></a>
+            </div>
+            <div class="info btn">
+              <span
+                class="iconify icons"
+                data-inline="false"
+                data-icon="mi:circle-information"
+                style="background: var(--blue); color: #eeeeee"
+              ></span>
+            </div>
+            <div class="logout btn">
+              <a href="{% url 'logout' %}"
+                ><span
+                  class="iconify icons"
+                  data-inline="false"
+                  data-icon="ic:outline-logout"
+                ></span
+              ></a>
+            </div>
+          </div>
+        </div>
+        <!-- main conatainer -->
+        <div class="main-container">
+          <h3>Personal Details</h3>
+          <div class="profileimage"><span></span></div>
+          <div class="info">
+            <p>
+              Name:
+              <span
+                >{{student.name}}</span
+              >
+            </p>
+          </div>
+          <div class="info">
+            <p>Email-ID: <span>{{student.user.email}}</span></p>
+          </div>
+          <div class="info">
+            <p>Student Id: <span>{{student.stud_id}}</span></p>
+          </div>
+          <div class="info">
+            <p>Phone No.: <span>{{student.phone_number}}</span></p>
+          </div>
+          <div class="info">
+            <p>Date of Birth: <span>{{student.dob}}</span></p>
+          </div>
+          <div class="info">
+            <p>Course: <span>Bachelor of Engineering</span></p>
+          </div>
+          <div class="info">
+            <p>Department: <span>{{ student.course.department }} Engineering</span></p>
+          </div>
+          <div class="info">
+            <p>Year/Semester: <span>{{ student.course.year }} / {{ student.course.semester}}</span></p>
+          </div>
+
+        </div>
+      </section>
+    </main>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = '{% static "styles/loginstyle.css" %}' >
+    
+    <title>LOGIN</title>
+</head>
+<body>
+    <header>
+        <p id="Header-text">PUBLIC SURVEILLANCE using IoT</p>
+    </header>
+    <main>
+        <section class="container">
+            <div class="left-container">
+                <div class="image-container"></div>
+
+                <!-- <div class="info">A smart way to see attendance!</div> -->
+            </div>
+            <div class="right-container">
+                <div class="form-box">
+                    <div class="btn-box">
+                        <div id="btn"></div>
+                        <button class="toggle-btn" onclick="studentlogin()">Student</button>
+                        <button class="toggle-btn" onclick="teacherlogin()">Teacher</button>
+                    </div>
+                    <form action= "loginstudent" method="POST" id ="student" class="login-page">
+                        {% csrf_token %}
+                        
+                        <input type="text" name="student_name" id="student_name" placeholder="Enter Student-ID" class="input-data" required>
+                        <input type="password" name="password" id="password1" placeholder="Enter your Password" class="input-data" required>
+                        <input type="submit" value="Login as Student" class="submit-btn">
+                    </form>
+                    <form action="loginteacher" method="POST" id= "teacher" class="login-page">
+                        {% csrf_token %}
+                        <input type="text" name="teacher_name" id="teacher_name" placeholder="Enter Teacher-ID" class="input-data" required>
+                        <input type="password" name="password" id="password2" placeholder="Enter your Password" class="input-data" required>
+                        <input type="submit" value="Login as Teacher" class="submit-btn">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        var student = document.getElementById("student");
+        var teacher = document.getElementById("teacher");
+        var btn = document.getElementById("btn");
+
+        function teacherlogin(){
+            student.style.left = "-45rem";
+            teacher.style.left= "0rem";
+            btn.style.left= "11rem";
+        }
+        function studentlogin(){
+            student.style.left = "0rem";
+            teacher.style.left= "45rem";
+            btn.style.left= "0";
+        }
+        
+    </script>
+</body>
+</html>
+

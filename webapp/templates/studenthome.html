@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='{% static "styles/style.css" %}'>
+    <style>
+        #lectures {
+            padding-left: 4rem;
+            margin-top: 1rem;
+            font-size:clamp(1.2rem,3vw,1.5rem); 
+            font-weight:lighter;
+            border-collapse: collapse;
+            width: 70%;
+          }
+          
+          #lectures td, #lectures th {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+          #lectures tr {background:white;}
+          
+          #lectures tr:hover {background-color: #ddd;}
+          
+          #lectures th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: var(--blue);
+            color: white;
+          }
+    </style>
+</head>
+<body>
+    <!-- header part -->
+    <header>
+        <p id='header-text'>Datta Meghe College Of Engineering</p>
+    </header>
+        <!-- Body part -->
+        <main>
+            <section class="main">
+                <!-- sidebar -->
+                <div class="sidebar">
+                    <div class="welcome-text"><span>Hello, {{student.user.first_name}}</span></div>
+                    <!-- button-container -->
+                    <div class="btn-container">
+                        <div class="home btn"><span class="iconify icons" data-inline="false" data-icon="carbon:home"style=" background: var(--blue); color: #eeeeee;" ></span>
+                        </div>
+                        <div class="info btn"><a href= "{% url 'studentinfo' %}"><span class="iconify icons" data-inline="false" data-icon="mi:circle-information" ></span></a></div>
+                        <div class="logout btn"><a href="{% url 'logout' %}" ><span class="iconify icons" data-inline="false" data-icon="ic:outline-logout" ></span></div></a>
+                    </div>
+                </div>
+                <!-- main conatainer -->
+                <div class="main-container">
+                    <div class="academic-info">
+                        <h3>Academic Details</h3>
+                        <div class="info"><p>Admission year:  <span>{{student.admission_date}}</span></p></div>
+                        <div class="info"><p>Current year: <span>{{ student.course.year }}</span></p></div>
+                        <div class="info"><p>Division: <span>{{ student.course.div }}</span></p></div>
+
+                    </div>
+                    <div class="location">
+                    <h3>Last Scanned Location</h3>
+                        <ul>
+                            {% for k, record in records.items %}
+                            <li><span>{{ record }} </span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="attendance">
+                        <h3>Attendace Ratio</h3>
+                        <p><span>{{ attendance_ratio }}%</span></p>
+                        <table id=lectures>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Lectures Alloted</th>
+                                <th>Lectures Taken</th>
+                                <th>Lectures Attended</th>
+                            </tr>
+                            {% for key,value_list in lectures.items %}
+                            <tr>
+                                <td>{{ key }}</td>
+                                {% for value in value_list%}
+                                <td>{{ value }}</td> 
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+   
+                </div>
+    
+            </section>
+        </main>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+</body>
+</html>
