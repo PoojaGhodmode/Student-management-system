@@ -1,0 +1,207 @@
+/* ==============
+    Global styles
+ ===============  */
+ :root{
+    --lightblue: #85C3FF;
+    --black:#000;
+    --gray: #EEEEEE;
+    --blue: #004585;
+    --dark-blue:#23374D;
+    }
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+body{
+    background:var(--lightblue);
+    width: 100%;
+    height:100%;
+}
+
+/* ==============
+    Header styles
+ ===============  */
+header{
+    background: #23374D;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-text{
+    color: #85C3FF;
+    font-style: normal;
+    font-weight: bold;
+    font-size: clamp(3rem,3vw,4.8rem);
+    line-height: 75px;
+    text-align: center;
+}
+/* ==============
+    main styles
+ ===============  */
+
+.main{
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-template-areas: 
+    'sidebar main-container';
+    column-gap: 3rem;
+    margin: 5rem 0;
+}
+
+/* ==============
+    sidebar styles
+ ===============  */
+ .sidebar{
+    grid-area: 'sidebar';
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    background: var(--dark-blue);
+    border-radius: 0 5rem 5rem 0 ;
+ }
+
+.welcome-text{
+    text-align: center;
+    padding: 2rem;
+}
+
+.welcome-text span{
+    font-size: clamp(2rem,3vw,3rem);
+    color: var(--lightblue);
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:3rem;
+    padding: 4rem 0;
+}
+
+.icons{
+    align-self: center;
+    font-size: clamp(6rem,3vw,4rem);
+    background: #eeeeeeab;
+    border-radius: 50%;
+    color: var(--blue);
+    padding: 1rem;
+}
+
+.icons:hover{
+    background: var(--blue);
+    color: #eeeeee;
+}
+/* ==============
+    main-container styles
+ ===============  */
+.main-container{
+    grid-area:'main-container';
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    background: #eeeeeeab;
+    padding: 3rem;
+    border-radius: 5rem;
+}
+
+.main-container h3{
+    font-size: clamp(3rem,3vw,4rem);
+    color: var(--blue);
+    padding: 1rem;
+}
+
+/* ==============================
+    main-container styles page:info
+ ==============================  */
+
+.main-container .info{
+    padding: 0.5rem 4rem;
+    font-size: clamp(1.5rem,3vw,2rem);
+    color: var(--blue);
+}
+
+.main-container span{
+    font-size: clamp(1.5rem,3vw,2rem);
+    color: var(--black);
+}
+
+/* ==============================
+    main-container styles page:Home
+ ==============================  */
+
+ .location ul,
+ .teacher-course ul{
+    padding: 0.5rem 4rem;
+    font-size: clamp(1.5rem,3vw,2rem);
+    color: var(--blue);
+ }
+.location li,
+.teacher-course li{
+    padding: 0.5rem 0;
+}
+
+ .attendance span{ 
+    padding: 0.5rem 4rem;
+    font-size: clamp(1.5rem,3vw,2rem);
+
+ }
+
+
+/* ==============
+    Media Queries
+ ===============  */
+ @media (max-width: 30rem){
+    .main{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        'sidebar'
+        'main-container';
+        row-gap: 3rem;
+        margin: 4rem 1rem;
+    }
+
+    .sidebar{
+        gap: 0rem;
+        border-radius: 5rem ;
+     }
+
+     .btn-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap:3rem;
+        padding: 2rem 0;
+    }
+
+    .main-container{
+        gap:0.5rem;
+        background: #eeeeeeab;
+        padding: 1.5rem;
+        border-radius: 5rem;
+    }
+
+    .main-container .info{
+        padding: 0.5rem 2rem;
+    }
+    /* ==============================
+    main-container styles page:Home
+ ==============================  */
+    .location ul,
+    .attendance span{
+        padding: 0.5rem 2rem;
+    }
+
+ }
+
